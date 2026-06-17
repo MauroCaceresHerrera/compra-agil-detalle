@@ -23,7 +23,7 @@ uv sync
 ## Ejecución
 
 ```bash
-uv run python main.py --token TU_TICKET --excel "ejemplo.xlsx" --sleep 1
+uv run python main.py --token TU_TICKET --excel ejemplo.xlsx --sleep 15 --jitter 5
 ```
 
 ## Importante
