@@ -23,7 +23,7 @@ uv sync
 ## Ejecución
 
 ```bash
-uv run python main.py --token TU_TICKET --excel "Cotizaciones 15-junio.xlsx" --sleep 1
+uv run python main.py --token TU_TICKET --excel "ejemplo.xlsx" --sleep 1
 ```
 
 ## Importante
