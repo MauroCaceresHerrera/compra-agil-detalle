@@ -31,12 +31,18 @@ def leer_ids_desde_excel(excel_path: str) -> list[str]:
     )
 
 
+def mostrar_headers_rate_limit(response: requests.Response):
+    log("Headers rate limit")
+    log(f"  x_ratelimit_limit     : {response.headers.get('X-RateLimit-Limit', 'no informado')}")
+    log(f"  x_ratelimit_remaining : {response.headers.get('X-RateLimit-Remaining', 'no informado')}")
+    log(f"  retry_after           : {response.headers.get('Retry-After', 'no informado')}")
+
+
 def mostrar_error_http(compra_id: str, response: requests.Response):
     log("ERROR HTTP")
     log(f"  compra_id    : {compra_id}")
     log(f"  status_code  : {response.status_code}")
     log(f"  url          : {response.url}")
-    log(f"  retry_after  : {response.headers.get('Retry-After', 'no informado')}")
     log(f"  content_type : {response.headers.get('Content-Type', 'no informado')}")
 
     body = response.text.strip()
@@ -51,6 +57,8 @@ def obtener_detalle(compra_id: str, token: str) -> dict:
         headers={"ticket": token},
         timeout=30,
     )
+
+    mostrar_headers_rate_limit(response)
 
     if response.status_code != 200:
         mostrar_error_http(compra_id, response)
